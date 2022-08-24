@@ -15,6 +15,8 @@ class Sms4JawalyServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/sms4jawaly.php', 'sms4jawaly');
+
         $this->app->bind('Sms4jawaly', function ($app) {
             return new BaseClass();
         });
