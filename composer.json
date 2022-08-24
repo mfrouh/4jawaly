@@ -1,0 +1,29 @@
+{
+    "name": "mfrouh/4jawaly",
+    "description": "Package For 4jawaly Sms For Laravel",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mfrouh\\Sms4jawaly\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mfrouh",
+            "email": "mohamedfrouh96@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MFrouh\\Sms4jawaly\\Providers\\Sms4JawalyServiceProvider"
+            ]
+        },
+        "aliases": {
+            "Sms4jawaly": "MFrouh\\Sms4jawaly\\Facades\\Sms4jawaly"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
