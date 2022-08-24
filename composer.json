@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Mfrouh\\Sms4jawaly\\": "src/"
+            "MFrouh\\Sms4jawaly\\": "src/"
         }
     },
     "authors": [
