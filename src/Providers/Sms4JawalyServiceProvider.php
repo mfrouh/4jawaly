@@ -1,6 +1,6 @@
 <?php
 
-namespace MFrouh\Sms4jawaly\Sms4JawalyServiceProvider;
+namespace MFrouh\Sms4jawaly\Providers;
 
 use MFrouh\Sms4jawaly\BaseClass;
 use Illuminate\Support\ServiceProvider;
