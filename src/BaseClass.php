@@ -18,8 +18,8 @@ class BaseClass
                 'return' => 'json'
             ];
 
-            $response = Http::get(self::Base_Url . '/getbalance.php', $data);
-
+            $response = Http::withOptions(['verify' => false])->get(self::Base_Url . '/getbalance.php', $data);
+            $response = json_decode($response);
             return ['status' => true, 'response' => $response->currentuserpoints, 'message' => $response->MessageIs];
         } catch (Exception $error) {
             return ['status' => false, 'response' => $error, 'message' => 'error'];
@@ -39,9 +39,9 @@ class BaseClass
                 'return'   => 'json'
             ];
 
-            $response = Http::get(self::Base_Url . '/sendsms.php', $data);
+            $response = Http::withOptions(['verify' => false])->get(self::Base_Url . '/sendsms.php', $data);
 
-            return $response;
+            return json_decode($response);
         } catch (Exception $error) {
             return $error;
         }
