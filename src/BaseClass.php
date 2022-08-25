@@ -26,14 +26,14 @@ class BaseClass
         }
     }
 
-    public function sendSms($message, $phoneNumber)
+    public function sendSms($message, $phoneNumber, $phoneCode)
     {
         try {
             $data = [
                 'username' => config('sms4jawaly.username'),
                 'password' => config('sms4jawaly.password'),
                 "message"  =>  urlencode($message),
-                "numbers"  => $this->convertArabicNumbers(ltrim($phoneNumber, '0')),
+                "numbers"  => '+' . $phoneCode . $this->convertArabicNumbers(ltrim($phoneNumber, '0')),
                 "sender"   => config('sms4jawaly.sender_name'),
                 "unicode"  => 'e',
                 'return'   => 'json'
@@ -52,7 +52,7 @@ class BaseClass
         $arabic = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
 
         $english = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-        
+
         return str_replace($arabic, $english, $number);
     }
 }
