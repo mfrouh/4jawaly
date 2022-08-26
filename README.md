@@ -28,7 +28,7 @@ use MFrouh\Sms4jawaly\Facades\Sms4jawaly;
 
 #
 
-1- Send Sms
+2- Send Sms
 
 ```php
 
