@@ -32,7 +32,7 @@ class BaseClass
             $data = [
                 'username' => config('sms4jawaly.username'),
                 'password' => config('sms4jawaly.password'),
-                "message"  =>  urlencode($message),
+                "message"  =>  $message,
                 "numbers"  => '+' . $phoneCode . $this->convertArabicNumbers(ltrim($phoneNumber, '0')),
                 "sender"   => config('sms4jawaly.sender_name'),
                 "unicode"  => 'e',
