@@ -8,6 +8,7 @@ use Exception;
 class BaseClass
 {
     const Base_Url = 'https://4jawaly.net/api';
+    const Base_Url_New = 'https://api-sms.4jawaly.com/api/v1/account/area/sms/send';
 
     public function getBalance()
     {
@@ -28,23 +29,16 @@ class BaseClass
 
     public function sendSms($message, $phoneNumber, $phoneCode)
     {
-        try {
-            $data = [
-                'username' => config('sms4jawaly.username'),
-                'password' => config('sms4jawaly.password'),
-                "message"  =>  $message,
-                "numbers"  => '+' . $phoneCode . $this->convertArabicNumbers(ltrim($phoneNumber, '0')),
-                "sender"   => config('sms4jawaly.sender_name'),
-                "unicode"  => 'e',
-                'return'   => 'json'
-            ];
+        $messages = [];
+        $messages["messages"] = [];
+        $messages["messages"][0]["text"] = $message;
+        $messages["messages"][0]["numbers"][] = $phoneCode . $this->convertArabicNumbers(ltrim($phoneNumber, '0'));
+        $messages["messages"][0]["sender"] = config('sms4jawaly.sender_name');
 
-            $response = Http::withOptions(['verify' => false])->get(self::Base_Url . '/sendsms.php', $data);
+        $response = Http::withBasicAuth(config('sms4jawaly.username'), config('sms4jawaly.password'))
+            ->post(self::Base_Url_New, $messages);
 
-            return json_decode($response);
-        } catch (Exception $error) {
-            return $error;
-        }
+        return json_decode($response);
     }
 
     private function convertArabicNumbers($number)
